@@ -2,7 +2,7 @@
 HEADERS := $(wildcard ./include/*/*.h)
 SRC_FILES := $(wildcard ./src/*/*.c ./test/*.c)
 ###############################################################################
-C_FLAGS := -g -O0 -fprofile-arcs -ftest-coverage
+C_FLAGS := -g -Wall -O0 -fprofile-arcs -ftest-coverage
 C_INCLUDES := ./include
 ###############################################################################
 BINARY := test_main

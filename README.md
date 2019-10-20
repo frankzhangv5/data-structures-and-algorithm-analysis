@@ -3,10 +3,17 @@ Data Structures and Algorithm Analysis in C
 
 ## Features
 - list
+- stack
+- queue
 
 ## Build
 ```
 make
+```
+
+## Test
+```
+make test
 ```
 
 ## Coverage Test
