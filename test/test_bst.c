@@ -40,7 +40,7 @@ static void test_find_min() {
     tree_node_t *p = find_min(tree);
     CU_ASSERT_PTR_NOT_NULL(p);
 
-    CU_ASSERT_EQUAL(28, get_value(p));
+    CU_ASSERT_EQUAL(29, get_value(p));
 }
 
 static void test_find_max() {
