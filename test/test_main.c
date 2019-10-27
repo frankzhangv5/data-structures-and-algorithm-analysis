@@ -8,6 +8,7 @@
 extern const CU_SuiteInfo list_testsuite;
 extern const CU_SuiteInfo stack_testsuite;
 extern const CU_SuiteInfo queue_testsuite;
+extern const CU_SuiteInfo bst_testsuite;
 
 int main(int argc, char **argv) {
 
@@ -20,7 +21,8 @@ int main(int argc, char **argv) {
         assert(!CU_is_test_running());
 
         CU_SuiteInfo suites[] = {list_testsuite, stack_testsuite,
-                                 queue_testsuite, CU_SUITE_INFO_NULL};
+                                 queue_testsuite, bst_testsuite,
+                                 CU_SUITE_INFO_NULL};
 
         if (CUE_SUCCESS != CU_register_suites(suites)) {
             return EXIT_FAILURE;

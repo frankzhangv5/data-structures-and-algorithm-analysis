@@ -13,7 +13,7 @@ all: deps format $(BINARY)
 	gcc -o $@ $<
 
 test_main:
-	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) -lcunit
+	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) -lcunit -lncurses
 ###############################################################################
 .PHONY: deps
 deps:
