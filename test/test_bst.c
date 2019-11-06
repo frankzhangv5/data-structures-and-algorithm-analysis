@@ -82,7 +82,9 @@ static void test_traverse() {
     printf("\nlevelorder_traverse:");
     levelorder_traverse(tree, level_visit);
     printf("\n");
+#if 0
     draw_tree(tree);
+#endif
 }
 
 static CU_TestInfo testcases[] = {

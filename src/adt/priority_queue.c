@@ -33,7 +33,7 @@ void dispose_priority_queue(priority_queue_t queue) {
     make_priority_queue_empty(queue);
 
     free(queue->arr);
-    free(queue);
+    // free(queue);
     queue = NULL;
 }
 void make_priority_queue_empty(priority_queue_t queue) {

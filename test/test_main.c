@@ -11,6 +11,7 @@ extern const CU_SuiteInfo queue_testsuite;
 extern const CU_SuiteInfo bst_testsuite;
 extern const CU_SuiteInfo avltree_testsuite;
 extern const CU_SuiteInfo priority_queue_testsuite;
+extern const CU_SuiteInfo sort_testsuite;
 
 int main(int argc, char **argv) {
 
@@ -25,7 +26,7 @@ int main(int argc, char **argv) {
         CU_SuiteInfo suites[] = {list_testsuite,           stack_testsuite,
                                  queue_testsuite,          bst_testsuite,
                                  priority_queue_testsuite, avltree_testsuite,
-                                 CU_SUITE_INFO_NULL};
+                                 sort_testsuite,           CU_SUITE_INFO_NULL};
 
         if (CUE_SUCCESS != CU_register_suites(suites)) {
             return EXIT_FAILURE;
