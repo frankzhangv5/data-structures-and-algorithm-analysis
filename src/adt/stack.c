@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-stack_t create_stack(int capacity) {
+_stack_t create_stack(int capacity) {
     assert(capacity > 0);
 
-    stack_t stack = (stack_entity_t *)malloc(sizeof(stack_entity_t));
+    _stack_t stack = (stack_entity_t *)malloc(sizeof(stack_entity_t));
     if (!stack) {
         perror("create_stack");
         return NULL;
@@ -29,7 +29,7 @@ stack_t create_stack(int capacity) {
     return stack;
 }
 
-void dispose_stack(stack_t stack) {
+void dispose_stack(_stack_t stack) {
     assert(NULL != stack);
 
     make_stack_empty(stack);
@@ -39,7 +39,7 @@ void dispose_stack(stack_t stack) {
     stack = NULL;
 }
 
-void make_stack_empty(stack_t stack) {
+void make_stack_empty(_stack_t stack) {
     assert(NULL != stack);
 
     stack->size = 0;
@@ -47,9 +47,9 @@ void make_stack_empty(stack_t stack) {
     memset(stack->arr, 0, sizeof(element_t) * (stack->capacity));
 }
 
-bool is_stack_empty(stack_t stack) { return !stack || !stack->size; }
+bool is_stack_empty(_stack_t stack) { return !stack || !stack->size; }
 
-bool is_stack_full(stack_t stack) {
+bool is_stack_full(_stack_t stack) {
     assert(NULL != stack);
 
     if (stack->size == stack->capacity)
@@ -58,7 +58,7 @@ bool is_stack_full(stack_t stack) {
     return false;
 }
 
-bool push(stack_t stack, element_t e) {
+bool push(_stack_t stack, element_t e) {
     assert(NULL != stack);
 
     if (!is_stack_full(stack)) {
@@ -71,7 +71,7 @@ bool push(stack_t stack, element_t e) {
     return false;
 }
 
-element_t pop(stack_t stack) {
+element_t pop(_stack_t stack) {
     assert(NULL != stack);
 
     if (!is_stack_empty(stack)) {
@@ -84,7 +84,7 @@ element_t pop(stack_t stack) {
     return -1;
 }
 
-element_t top(stack_t stack) {
+element_t top(_stack_t stack) {
     assert(NULL != stack);
 
     if (!is_stack_empty(stack)) {

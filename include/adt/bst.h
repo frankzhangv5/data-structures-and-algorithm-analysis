@@ -4,11 +4,6 @@
 #include "type.h"
 #include <string.h>
 
-typedef struct _point {
-    int y;
-    int x;
-} point_t;
-
 typedef struct _tree_node {
     element_t element;
     struct _tree_node *left;

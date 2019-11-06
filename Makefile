@@ -1,28 +1,40 @@
 ###############################################################################
 HEADERS := $(wildcard ./include/*/*.h)
 SRC_FILES := $(wildcard ./src/*/*.c ./test/*.c)
+OS := $(shell uname)
 ###############################################################################
 C_FLAGS := -g -Wall -O0 -fprofile-arcs -ftest-coverage
 C_INCLUDES := ./include
 ###############################################################################
-BINARY := test_main
+BINARY := tester
 ###############################################################################
 all: deps format $(BINARY)
 
 %:%.c
 	gcc -o $@ $<
 
-test_main:
+$(BINARY):
 	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) -lcunit -lncurses
 ###############################################################################
 .PHONY: deps
+
 deps:
 	@echo "checking deps..."
+ifeq ($(OS), Darwin)
+	@# on mac
+	@which clang-format || brew install clang-format
+	@# @which valgrind || brew install --HEAD valgrind
+	@which lcov || brew install lcov
+	@which genhtml || brew  install genhtml
+	@ls /usr/local/include/CUnit/CUnit.h 2>/dev/null || brew  install cunit
+else
+	@# on debain linux
 	@which clang-format || sudo apt-get install clang-format
 	@which valgrind || sudo apt-get install valgrind
-	@which lcov || sudo apt-get install lcov
+	@which lcov || sudo apt-get  install lcov
 	@which genhtml || sudo apt-get install genhtml
-	@ldconfig -p|grep cunit || sudo apt-get install libcunit1 libcunit1-dev
+	@ldconfig -p|grep cunit || sudo apt-get  install libcunit1 libcunit1-dev
+endif
 ###############################################################################
 .PHONY: format
 format:
@@ -42,12 +54,18 @@ endef
 .PHONY: cov
 cov:test
 	@echo "coverage testing..."
-	@$(call coverage,test_main)
+	@$(call coverage,$(BINARY))
 	@echo "done."
 
 ###############################################################################
 define mem_check
-valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./$(1)
+ifeq ($(OS), Darwin)
+	# on mac
+	# valgrind still not available yet
+else
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./$(1)
+	# on debain linux
+endif
 endef
 
 .PHONY: memcheck
@@ -62,5 +80,5 @@ wc:
 
 .PHONY: clean
 clean:
-	@rm -rf coverage_*
+	@rm -rf coverage_* *.DSYM
 	@rm -rf $(BINARY) *.gcno *.gcda test.info

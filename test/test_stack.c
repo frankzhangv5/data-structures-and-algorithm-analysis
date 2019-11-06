@@ -10,7 +10,7 @@
 
 #define SUITE_NAME "stack_testsuite"
 
-static stack_t stack = NULL;
+static _stack_t stack = NULL;
 
 static void test_is_stack_empty() { CU_ASSERT_TRUE(is_stack_empty(stack)); }
 

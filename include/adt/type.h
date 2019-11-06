@@ -14,4 +14,9 @@ typedef struct _doubly_linked_node {
     struct _doubly_linked_node *next;
 } doubly_linked_node_t;
 
+typedef struct _point {
+    int y;
+    int x;
+} point_t;
+
 #endif
