@@ -26,7 +26,6 @@ static void quick_sort_inner(element_t unsorted[], int left, int right) {
         i = left;
         j = right - 1;
         for (;;) {
-
             while (unsorted[++i] < pivot) {
             }
             while (unsorted[--j] > pivot) {

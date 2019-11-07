@@ -1,8 +1,9 @@
 #ifndef _BST_H_
 #define _BST_H_
 
-#include "type.h"
 #include <string.h>
+
+#include "type.h"
 
 typedef struct _tree_node {
     element_t element;

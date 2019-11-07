@@ -39,7 +39,6 @@ static void merge_sort_inner(element_t unsorted[], element_t tmp_arr[],
 }
 
 void merge_sort(element_t unsorted[], int len) {
-
     if (!unsorted || len < 1)
         return;
 

@@ -14,12 +14,10 @@ extern const CU_SuiteInfo priority_queue_testsuite;
 extern const CU_SuiteInfo sort_testsuite;
 
 int main(int argc, char **argv) {
-
     if (CU_initialize_registry()) {
         fprintf(stderr, "Initialization of Test Registry failed.\n");
         return EXIT_FAILURE;
     } else {
-
         assert(NULL != CU_get_registry());
         assert(!CU_is_test_running());
 

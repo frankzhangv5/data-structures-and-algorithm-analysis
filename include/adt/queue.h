@@ -1,8 +1,9 @@
 #ifndef _QUEUE_H_
 #define _QUEUE_H_
 
-#include "type.h"
 #include <stdbool.h>
+
+#include "type.h"
 
 typedef struct _queue_entity {
     int capacity;

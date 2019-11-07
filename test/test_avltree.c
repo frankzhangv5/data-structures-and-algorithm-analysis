@@ -1,8 +1,7 @@
 #include <CUnit/CUnit.h>
+#include <adt/avltree.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <adt/avltree.h>
 
 #ifdef SUITE_NAME
 #undef SUITE_NAE

@@ -2,7 +2,6 @@
 #include <sort/util.h>
 
 static void percolate_down(element_t unsorted[], int i, int len) {
-
     element_t tmp = unsorted[i];
     int child = 2 * i + 1;
 

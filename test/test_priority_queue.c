@@ -1,8 +1,7 @@
 #include <CUnit/CUnit.h>
+#include <adt/priority_queue.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <adt/priority_queue.h>
 
 #ifdef SUITE_NAME
 #undef SUITE_NAE

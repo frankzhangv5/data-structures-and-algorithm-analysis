@@ -1,9 +1,8 @@
 #include <CUnit/CUnit.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <sort/sort.h>
 #include <sort/util.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #ifdef SUITE_NAME
 #undef SUITE_NAE
@@ -14,7 +13,6 @@
 #define NELEM 500
 
 static void test_sort() {
-
     clock_t start;
     element_t *unsorted = NULL;
 

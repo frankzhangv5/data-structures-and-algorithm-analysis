@@ -48,7 +48,6 @@ static avltree_node_t *double_rotate_with_right(avltree_node_t *k1) {
 }
 
 avltree_node_t *insert_into_avltree(avltree_node_t *root, element_t e) {
-
     if (!root) {
         root = (avltree_node_t *)malloc(sizeof(avltree_node_t));
         if (!root) {

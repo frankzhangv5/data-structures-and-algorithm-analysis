@@ -12,22 +12,21 @@ static void shift_x(tree_node_t *node, int shift) {
 
 static void adjust_tree(tree_node_t *node, tree_node_t *root) {
     if (node && root) {
-
         adjust_tree(node->left, root);
         adjust_tree(node->right, root);
 
         int delta_x = node->point.x - root->point.x;
         int delta_y = node->point.y - root->point.y;
-        if (node->element < root->element) { // left subtree
-            if (delta_x > 0 ||
-                (0 == delta_x && delta_y > 0)) { // conflict, need shift subtree
+        if (node->element < root->element) {  // left subtree
+            if (delta_x > 0 || (0 == delta_x &&
+                                delta_y > 0)) {  // conflict, need shift subtree
                 shift_x(root->left, -delta_x - 4);
             }
         }
 
-        if (node->element > root->element) { // right subtree
-            if (delta_x < 0 ||
-                (0 == delta_x && delta_y > 0)) { // conflict, need shift subtree
+        if (node->element > root->element) {  // right subtree
+            if (delta_x < 0 || (0 == delta_x &&
+                                delta_y > 0)) {  // conflict, need shift subtree
                 shift_x(root->right, -delta_x + 4);
             }
         }

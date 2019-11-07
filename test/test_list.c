@@ -1,8 +1,7 @@
 #include <CUnit/CUnit.h>
+#include <adt/list.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <adt/list.h>
 
 #ifdef SUITE_NAME
 #undef SUITE_NAE

@@ -1,8 +1,7 @@
 #include <CUnit/CUnit.h>
+#include <adt/bst.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <adt/bst.h>
 #include <ui/ui.h>
 
 #ifdef SUITE_NAME

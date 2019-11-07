@@ -1,8 +1,9 @@
 #ifndef _STACK_H_
 #define _STACK_H_
 
-#include "type.h"
 #include <stdbool.h>
+
+#include "type.h"
 
 typedef struct _stack_entity {
     int capacity;

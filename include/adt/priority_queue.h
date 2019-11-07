@@ -1,8 +1,9 @@
 #ifndef _PRIORITY_QUEUE_H_
 #define _PRIORITY_QUEUE_H_
 
-#include "type.h"
 #include <stdbool.h>
+
+#include "type.h"
 
 typedef struct _heap_entity {
     int capacity;

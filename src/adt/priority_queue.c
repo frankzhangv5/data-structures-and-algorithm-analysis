@@ -27,7 +27,6 @@ priority_queue_t create_priority_queue(int capacity) {
     return queue;
 }
 void dispose_priority_queue(priority_queue_t queue) {
-
     assert(NULL != queue);
 
     make_priority_queue_empty(queue);
@@ -62,7 +61,7 @@ void insert_into_priority_queue(priority_queue_t queue, element_t e) {
 
     if (!is_priority_queue_full(queue)) {
         int i;
-        for (i = ++queue->size; queue->arr[i / 2] > e; i /= 2) // percolate up
+        for (i = ++queue->size; queue->arr[i / 2] > e; i /= 2)  // percolate up
             queue->arr[i] = queue->arr[i / 2];
         queue->arr[i] = e;
     }

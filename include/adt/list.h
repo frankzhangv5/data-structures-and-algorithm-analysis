@@ -1,8 +1,9 @@
 #ifndef _LIST_H_
 #define _LIST_H_
 
-#include "type.h"
 #include <stdbool.h>
+
+#include "type.h"
 
 typedef singly_linked_node_t list_node_t;
 typedef list_node_t *list_t;
