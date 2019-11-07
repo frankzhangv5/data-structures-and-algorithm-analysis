@@ -8,5 +8,6 @@ void shell_sort(element_t unsorted[], int len);
 void merge_sort(element_t unsorted[], int len);
 void heap_sort(element_t unsorted[], int len);
 void quick_sort(element_t unsorted[], int len);
+void bucket_sort(element_t unsorted[], int len, int max);
 
 #endif

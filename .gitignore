@@ -1,10 +1,7 @@
-# gcov
-*.gcno
-*.gcda
-test.info
-coverage_*
 .vscode/
-test_main
+tester
+gcov_out/
+
 # Prerequisites
 *.d
 

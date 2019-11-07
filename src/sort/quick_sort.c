@@ -49,7 +49,5 @@ void quick_sort(element_t unsorted[], int len) {
     if (!unsorted || len < 1)
         return;
 
-    int center = len / 2;
-    quick_sort_inner(unsorted, 0, center);
-    quick_sort_inner(unsorted, center + 1, len - 1);
+    quick_sort_inner(unsorted, 0, len - 1);
 }

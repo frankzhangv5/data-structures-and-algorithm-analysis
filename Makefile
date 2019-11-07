@@ -3,8 +3,13 @@ HEADERS := $(wildcard ./include/*/*.h)
 SRC_FILES := $(wildcard ./src/*/*.c ./test/*.c)
 OS := $(shell uname)
 ###############################################################################
-C_FLAGS := -g -Wall -O0 -fprofile-arcs -ftest-coverage
+C_FLAGS := -g -Wall -O0 
 C_INCLUDES := ./include
+###############################################################################
+GCOV_FLAGS := -fprofile-arcs -ftest-coverage
+GCOV_OUT := ./gcov_out
+GCOV_BINARY := gcov_tester
+GCOV_SRCS := $(subst ./, ../, $(SRC_FILES))
 ###############################################################################
 BINARY := tester
 ###############################################################################
@@ -13,8 +18,12 @@ all: deps format $(BINARY)
 %:%.c
 	gcc -o $@ $<
 
-$(BINARY):
+$(BINARY):format
 	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) -lcunit -lncurses
+
+$(GCOV_BINARY):format
+	rm -rf $(GCOV_OUT)
+	mkdir $(GCOV_OUT) && cd $(GCOV_OUT) && gcc $(C_FLAGS) $(GCOV_FLAGS) -I../$(C_INCLUDES) -o $@ $(GCOV_SRCS) -lcunit -lncurses
 ###############################################################################
 .PHONY: deps
 
@@ -47,26 +56,27 @@ test: $(BINARY)
 	@./$(BINARY)
 ###############################################################################
 define coverage
-lcov -d . -t '$(1)' -o 'test.info' -b . -c
-genhtml -o coverage_$(1) test.info
+cd $(GCOV_OUT) && ./$(1) && lcov -d . -t '$(1)' -o '$(1).info' -b . -c && genhtml -o report $(1).info
 endef
 
 .PHONY: cov
-cov:test
+cov:$(GCOV_BINARY)
 	@echo "coverage testing..."
-	@$(call coverage,$(BINARY))
-	@echo "done."
+	@$(call coverage,$(GCOV_BINARY))
+	@echo "success ! coverage report at: $(GCOV_OUT)/report/index.html"
 
 ###############################################################################
-define mem_check
 ifeq ($(OS), Darwin)
-	# on mac
-	# valgrind still not available yet
-else
-	valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./$(1)
-	# on debain linux
-endif
+# on mac
+define mem_check
+	@echo "valgrind still not available yet!"
 endef
+else
+# on debain linux
+define mem_check
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./$(1)
+endef
+endif
 
 .PHONY: memcheck
 memcheck:$(BINARY)
@@ -80,5 +90,4 @@ wc:
 
 .PHONY: clean
 clean:
-	@rm -rf coverage_* *.DSYM
-	@rm -rf $(BINARY) *.gcno *.gcda test.info
+	@rm -rf $(GCOV_OUT) $(BINARY) *.DSYM

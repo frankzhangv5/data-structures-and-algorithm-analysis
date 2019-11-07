@@ -53,6 +53,12 @@ static void test_sort() {
     SPENT_SEC("quick_sort", start);
     print_array(unsorted, NELEM, "quick_sort");
 
+    fill_array(unsorted, NELEM, 1000);
+    start = clock();
+    bucket_sort(unsorted, NELEM, 1000);
+    SPENT_SEC("bucket_sort", start);
+    print_array(unsorted, NELEM, "bucket_sort");
+
     free(unsorted);
 }
 

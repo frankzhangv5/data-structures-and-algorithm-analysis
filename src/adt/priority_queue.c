@@ -31,9 +31,12 @@ void dispose_priority_queue(priority_queue_t queue) {
     assert(NULL != queue);
 
     make_priority_queue_empty(queue);
-
     free(queue->arr);
-    // free(queue);
+
+#ifndef __APPLE__
+    free(queue);
+#endif
+
     queue = NULL;
 }
 void make_priority_queue_empty(priority_queue_t queue) {

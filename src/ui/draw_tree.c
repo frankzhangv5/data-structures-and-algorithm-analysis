@@ -36,9 +36,9 @@ static void adjust_tree(tree_node_t *node, tree_node_t *root) {
 
 static void adjust(tree_node_t *root) {
     if (root) {
-        adjust_tree(root, root);
         adjust(root->left);
         adjust(root->right);
+        adjust_tree(root, root);
     }
 }
 
