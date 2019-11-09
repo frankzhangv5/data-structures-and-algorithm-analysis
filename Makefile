@@ -3,7 +3,7 @@ HEADERS := $(wildcard ./include/*/*.h)
 SRC_FILES := $(wildcard ./src/*/*.c ./test/*.c)
 OS := $(shell uname)
 ###############################################################################
-C_FLAGS := -g -Wall -O0 
+C_FLAGS := -g -Wall -O0 -std=c99
 C_INCLUDES := ./include
 ###############################################################################
 GCOV_FLAGS := -fprofile-arcs -ftest-coverage
