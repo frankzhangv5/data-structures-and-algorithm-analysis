@@ -1,4 +1,5 @@
 .vscode/
+test_draw
 tester
 gcov_out/
 
