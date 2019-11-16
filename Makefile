@@ -94,4 +94,4 @@ wc:
 
 .PHONY: clean
 clean:
-	@rm -rf $(GCOV_OUT) $(BINARY) *.DSYM
+	@rm -rf $(GCOV_OUT) $(BINARY) $(DRAW_TREE) *.DSYM
