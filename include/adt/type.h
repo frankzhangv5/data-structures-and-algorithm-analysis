@@ -19,4 +19,11 @@ typedef struct _point {
     int x;
 } point_t;
 
+typedef struct _tree_node {
+    element_t element;
+    struct _tree_node *left;
+    struct _tree_node *right;
+    point_t point;
+} tree_node_t;
+
 #endif

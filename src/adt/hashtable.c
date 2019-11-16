@@ -87,11 +87,13 @@ void hashtable_set(hashtable_t *table, const char *key, const char *value) {
         p->key = strdup(key);
         p->value = strdup(value);
 
+        if (!head)
+            table->size++;
+
         p->next = head;
         head = p;
 
         table->arr[pos] = head;
-        table->size++;
     }
 }
 const char *hashtable_get(hashtable_t *table, const char *key) {
@@ -124,12 +126,12 @@ void hashtable_remove(hashtable_t *table, const char *key) {
                 free(p->value);
 
                 if (p == prev) {
-                    table->arr[pos] = p->next;
+                    table->arr[pos] = NULL;
+                    table->size--;
                 } else {
                     prev->next = p->next;
                 }
                 free(p);
-                table->size--;
             }
             prev = p;
             p = p->next;

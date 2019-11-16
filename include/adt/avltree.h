@@ -7,8 +7,8 @@ typedef struct avltree_node {
     element_t element;
     struct avltree_node *left;
     struct avltree_node *right;
-    int height;
     point_t point;
+    int height;
 } avltree_node_t;
 
 typedef avltree_node_t *avltree_t;

@@ -5,13 +5,6 @@
 
 #include "type.h"
 
-typedef struct _tree_node {
-    element_t element;
-    struct _tree_node *left;
-    struct _tree_node *right;
-    point_t point;
-} tree_node_t;
-
 typedef struct _list_node {
     tree_node_t *node;
     struct _list_node *next;

@@ -1,4 +1,3 @@
-#include <adt/bst.h>
 #include <ncurses.h>
 #include <ui/ui.h>
 
@@ -32,8 +31,7 @@ static void adjust_tree(tree_node_t *node, tree_node_t *root) {
         }
     }
 }
-
-static void adjust(tree_node_t *root) {
+void adjust(tree_node_t *root) {
     if (root) {
         adjust(root->left);
         adjust(root->right);
@@ -41,7 +39,7 @@ static void adjust(tree_node_t *root) {
     }
 }
 
-static void validate(tree_node_t *node, int max_cols, int max_rows) {
+void validate(tree_node_t *node, int max_cols, int max_rows) {
     if (node) {
         int x = node->point.x;
         int y = node->point.y;
@@ -68,7 +66,7 @@ static void validate(tree_node_t *node, int max_cols, int max_rows) {
 
 static point_t left_shift = {.y = 4, .x = -6};
 static point_t right_shift = {.y = 4, .x = 6};
-static void layout(tree_node_t *root, point_t start, point_t shift) {
+void layout(tree_node_t *root, point_t start, point_t shift) {
     if (root) {
         root->point = start;
         root->point.x += shift.x;
@@ -79,7 +77,7 @@ static void layout(tree_node_t *root, point_t start, point_t shift) {
     }
 }
 
-static void draw_h_line(int y, int start_x, int end_x) {
+void draw_h_line(int y, int start_x, int end_x) {
     int i = start_x;
     do {
         mvprintw(y, i, "_");
@@ -120,6 +118,14 @@ static void draw_node(tree_node_t *node) {
     }
 }
 
+void do_traverse(void *root, visit_callback_t visit) {
+    if (root) {
+        visit(root);
+        do_traverse(((tree_node_t *)root)->left, visit);
+        do_traverse(((tree_node_t *)root)->right, visit);
+    }
+}
+
 void draw_tree(tree_node_t *root) {
     if (!root)
         return;
@@ -130,7 +136,23 @@ void draw_tree(tree_node_t *root) {
     layout(root, root_point, root_shift);
     adjust(root);
     validate(root, COLS, LINES);
-    preorder_traverse(root, draw_node);
+    do_traverse(root, draw_node);
+    refresh();
+    getch();
+    endwin();
+}
+
+void draw_other_tree(tree_node_t *root, visit_callback_t draw_other_node) {
+    if (!root)
+        return;
+    initscr();
+    curs_set(0);
+    point_t root_point = {.y = 1, .x = COLS / 2};
+    point_t root_shift = {.y = 0, .x = 0};
+    layout(root, root_point, root_shift);
+    adjust(root);
+    validate(root, COLS, LINES);
+    do_traverse(root, draw_other_node);
     refresh();
     getch();
     endwin();

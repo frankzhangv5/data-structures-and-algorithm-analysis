@@ -1,6 +1,6 @@
 ###############################################################################
 HEADERS := $(wildcard ./include/*/*.h)
-SRC_FILES := $(wildcard ./src/*/*.c ./test/*.c)
+SRC_FILES := $(wildcard ./src/*/*.c ./test/test_*.c)
 OS := $(shell uname)
 ###############################################################################
 C_FLAGS := -g -Wall -O0 -std=c99
@@ -12,14 +12,18 @@ GCOV_BINARY := gcov_tester
 GCOV_SRCS := $(subst ./, ../, $(SRC_FILES))
 ###############################################################################
 BINARY := tester
+DRAW_TREE := test_draw
 ###############################################################################
-all: deps format $(BINARY)
+all: deps format $(BINARY) $(DRAW_TREE)
 
 %:%.c
 	gcc -o $@ $<
 
 $(BINARY):format
-	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) -lcunit -lncurses
+	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) ./test/main.c -lcunit -lncurses
+
+$(DRAW_TREE):format
+	gcc $(C_FLAGS) -I$(C_INCLUDES) -o $@ $(SRC_FILES) ./test/draw_tree_main.c -lcunit -lncurses
 
 $(GCOV_BINARY):format
 	rm -rf $(GCOV_OUT)
