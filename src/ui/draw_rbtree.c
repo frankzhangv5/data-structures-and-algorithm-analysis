@@ -75,7 +75,7 @@ void draw_rbtree(rbtree_t *tree) {
 
     process_nil_node(tree->root, tree->nil);
 
-    rbtree_node_t *root = tree->root;
+    tree_node_t *root = (tree_node_t *)(tree->root);
 
     initscr();
     curs_set(0);
@@ -88,7 +88,7 @@ void draw_rbtree(rbtree_t *tree) {
     layout(root, root_point, root_shift);
     adjust(root);
     validate(root, COLS, LINES);
-    do_traverse(root, draw_rbtree_node);
+    do_traverse(root, (visit_callback_t)draw_rbtree_node);
 
     refresh();
     getch();

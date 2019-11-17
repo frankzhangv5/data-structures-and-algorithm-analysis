@@ -32,7 +32,7 @@ static void right_rotate(rbtree_t *tree, rbtree_node_t *k2) {
     } else if (IS_LEFT_CHILD(k1)) {
         k1->parent->left = k1;
     } else {
-        k1->parent->right = k2;
+        k1->parent->right = k1;
     }
 
     k1->right = k2;
@@ -125,7 +125,7 @@ rbtree_t *rbtree_insert(rbtree_t *tree, int k) {
         tree->root = x;
     } else if (k < p->element) {
         p->left = x;
-    } else if (k > p->element) {
+    } else {
         p->right = x;
     }
 

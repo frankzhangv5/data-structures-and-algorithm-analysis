@@ -11,8 +11,8 @@ GCOV_OUT := ./gcov_out
 GCOV_BINARY := gcov_tester
 GCOV_SRCS := $(subst ./, ../, $(SRC_FILES))
 ###############################################################################
-BINARY := tester
-DRAW_TREE := test_draw
+BINARY := main_tester
+DRAW_TREE := draw_tree_tester
 ###############################################################################
 all: deps format $(BINARY) $(DRAW_TREE)
 
@@ -94,4 +94,4 @@ wc:
 
 .PHONY: clean
 clean:
-	@rm -rf $(GCOV_OUT) $(BINARY) $(DRAW_TREE) *.DSYM
+	@rm -rf $(GCOV_OUT) $(BINARY) $(DRAW_TREE) *.dSYM

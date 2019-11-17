@@ -23,7 +23,6 @@ int main(int argc, char *argv[]) {
 
     if (!strcmp("bst", type)) {
         tree_node_t *root = NULL;
-        int i;
         for (i = 0; i < NELEM(nodes); i++) {
             root = insert_into_tree(root, nodes[i]);
         }
@@ -31,7 +30,6 @@ int main(int argc, char *argv[]) {
         destroy_tree(root);
     } else if (!strcmp("avltree", type)) {
         avltree_node_t *root = NULL;
-        int i;
         for (i = 0; i < NELEM(nodes); i++) {
             root = insert_into_avltree(root, nodes[i]);
         }
@@ -39,7 +37,6 @@ int main(int argc, char *argv[]) {
         destroy_avltree(root);
     } else if (!strcmp("rbtree", type)) {
         rbtree_t *tree = rbtree_init();
-        int i;
         for (i = 0; i < NELEM(nodes); i++) {
             tree = rbtree_insert(tree, nodes[i]);
         }
